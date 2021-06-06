@@ -10,12 +10,28 @@ namespace VTSOdevStokCari
     public class Veritabani
     {
         private const string _veriTabaniDosyasi = "StokCari.db3";
-        public SqliteConnection Baglanti { get; set; } = null;
 
-        public void Baglan()
+        // Bağlantıyı Singleton olarak tanımlayacağız
+        // İlk erişmeye çalıştığımızda geçerli bir bağlantı yoksa otomatik olarak yaratılacak
+
+        private SqliteConnection _baglanti = null;
+        public SqliteConnection Baglanti
         {
-            Baglanti = new SqliteConnection("Data Source=" + _veriTabaniDosyasi);
-            Baglanti.Open();
+            get
+            {
+                if (_baglanti == null)
+                {
+                    Baglan();
+                }
+
+                return _baglanti;
+            }
+        }
+
+        private void Baglan()
+        {
+            _baglanti = new SqliteConnection("Data Source=" + _veriTabaniDosyasi);
+            _baglanti.Open();
         }
 
         private void SqlKoduCalistir(string kod)
@@ -26,9 +42,6 @@ namespace VTSOdevStokCari
 
         public void TablolariYarat()
         {
-            if (Baglanti == null)
-                throw new Exception("Veri tabanı bağlı değilken tablo yaratma işlemi yapılamaz");
-
             string sqlKodu;
             sqlKodu = @"
                 CREATE TABLE IF NOT EXISTS Stok (
@@ -75,10 +88,75 @@ namespace VTSOdevStokCari
                 Tarih Datetime not null,
                 Meblag numeric(8,2) not null,
                 Tipi integer not null CHECK (Tipi = 1 OR Tipi = -1),
-                PRIMARY KEY(StokHareketID),
-                FOREIGN KEY (StokID) REFERENCES Stok(StokID) ON DELETE CASCADE
+                PRIMARY KEY(CariHareketID),
+                FOREIGN KEY (MusteriID) REFERENCES Musteri(MusteriID) ON DELETE CASCADE
                 );";
             SqlKoduCalistir(sqlKodu);
+        }
+
+        public List<Stok> Stoklar(string adFiltre)
+        {
+            List<Stok> sonuc = new List<Stok>();
+
+            SqliteCommand komut;
+            string sorgu = "SELECT * FROM Stok";
+            if (adFiltre != "")
+            {
+                sorgu += " Where StokAdi Like @aranan";
+                komut = new SqliteCommand(sorgu, Baglanti);
+                komut.Parameters.AddWithValue("@aranan", $"%{adFiltre}%");
+            }
+            else
+            {
+                komut = new SqliteCommand(sorgu, Baglanti);
+            }
+
+            komut.Prepare();
+            SqliteDataReader okuyucu = komut.ExecuteReader();
+            while (okuyucu.Read())
+            {
+                var stok = new Stok();
+                stok.StokID = okuyucu.GetInt32(0);
+                stok.StokAdi = okuyucu.GetString(1);
+                stok.Birim = okuyucu.GetString(2);
+                stok.Miktar = okuyucu.GetDecimal(3);
+                sonuc.Add(stok);
+            }
+
+            return sonuc;
+        }
+
+        public List<Musteri> Musteriler(string unvanFiltre)
+        {
+            List<Musteri> sonuc = new List<Musteri>();
+
+            SqliteCommand komut;
+            string sorgu = "SELECT * FROM Musteri";
+            if (unvanFiltre != "")
+            {
+                sorgu += " Where MusteriUnvani Like @aranan";
+                komut = new SqliteCommand(sorgu, Baglanti);
+                komut.Parameters.AddWithValue("@aranan", $"%{unvanFiltre}%");
+            }
+            else
+            {
+                komut = new SqliteCommand(sorgu, Baglanti);
+            }
+
+            komut.Prepare();
+            SqliteDataReader okuyucu = komut.ExecuteReader();
+
+            while (okuyucu.Read())
+            {
+                var Musteri = new Musteri();
+                Musteri.MusteriID = okuyucu.GetInt32(0);
+                Musteri.MusteriUnvani = okuyucu.GetString(1);
+                Musteri.Adres = okuyucu.GetString(2);
+                Musteri.Bakiye = okuyucu.GetDecimal(3);
+                sonuc.Add(Musteri);
+            }
+
+            return sonuc;
         }
     }
 }

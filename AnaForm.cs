@@ -28,7 +28,6 @@ namespace VTSOdevStokCari
         private void VeritabaniKontrol()
         {
             _veritabani = new Veritabani();
-            _veritabani.Baglan();
             _veritabani.TablolariYarat();
         }
 
