@@ -73,7 +73,7 @@ namespace VTSOdevStokCari
                 CariHareketID integer not null,
                 MusteriID integer not null,
                 Tarih Datetime not null,
-                Miktar numeric(8,2) not null,
+                Meblag numeric(8,2) not null,
                 Tipi integer not null CHECK (Tipi = 1 OR Tipi = -1),
                 PRIMARY KEY(StokHareketID),
                 FOREIGN KEY (StokID) REFERENCES Stok(StokID) ON DELETE CASCADE
