@@ -50,5 +50,44 @@ namespace VTSOdevStokCari
                 ml.ShowDialog();
             }
         }
+
+        private void stokKartlarıToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StokKartForm sk = new StokKartForm())
+            {
+                sk.VeriTabani = _veritabani;
+                sk.Yukle();
+                sk.ShowDialog();
+            }
+        }
+
+        private void malHareketiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StokHareketForm sh = new StokHareketForm())
+            {
+                sh.VeriTabani = _veritabani;
+                sh.ShowDialog();
+            }
+        }
+
+        private void stokListesiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StokListeForm sk = new StokListeForm())
+            {
+                sk.VeriTabani = _veritabani;
+                sk.Yukle();
+                sk.ShowDialog();
+            }
+        }
+
+        private void müşteriListesiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (MusteriListeForm ml = new MusteriListeForm())
+            {
+                ml.VeriTabani = _veritabani;
+                ml.Yukle();
+                ml.ShowDialog();
+            }
+        }
     }
 }

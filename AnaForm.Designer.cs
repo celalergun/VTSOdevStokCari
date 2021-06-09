@@ -36,7 +36,16 @@ namespace VTSOdevStokCari
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hareketlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.malGirişçıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.malHareketiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paraHareketiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.sQLInjectionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.raporlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stokListesiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.müşteriListesiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.stokHareketRaporuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.carihHesapEkstresiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +53,8 @@ namespace VTSOdevStokCari
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kartlarToolStripMenuItem,
-            this.hareketlerToolStripMenuItem});
+            this.hareketlerToolStripMenuItem,
+            this.raporlarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -67,6 +77,7 @@ namespace VTSOdevStokCari
             this.stokKartlarıToolStripMenuItem.Name = "stokKartlarıToolStripMenuItem";
             this.stokKartlarıToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stokKartlarıToolStripMenuItem.Text = "Stok kartları";
+            this.stokKartlarıToolStripMenuItem.Click += new System.EventHandler(this.stokKartlarıToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -90,16 +101,80 @@ namespace VTSOdevStokCari
             // hareketlerToolStripMenuItem
             // 
             this.hareketlerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.malGirişçıkışToolStripMenuItem});
+            this.malHareketiToolStripMenuItem,
+            this.paraHareketiToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.sQLInjectionTestToolStripMenuItem});
             this.hareketlerToolStripMenuItem.Name = "hareketlerToolStripMenuItem";
             this.hareketlerToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.hareketlerToolStripMenuItem.Text = "Hareketler";
             // 
-            // malGirişçıkışToolStripMenuItem
+            // malHareketiToolStripMenuItem
             // 
-            this.malGirişçıkışToolStripMenuItem.Name = "malGirişçıkışToolStripMenuItem";
-            this.malGirişçıkışToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.malGirişçıkışToolStripMenuItem.Text = "Fatura";
+            this.malHareketiToolStripMenuItem.Name = "malHareketiToolStripMenuItem";
+            this.malHareketiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.malHareketiToolStripMenuItem.Text = "Mal hareketi...";
+            this.malHareketiToolStripMenuItem.Click += new System.EventHandler(this.malHareketiToolStripMenuItem_Click);
+            // 
+            // paraHareketiToolStripMenuItem
+            // 
+            this.paraHareketiToolStripMenuItem.Name = "paraHareketiToolStripMenuItem";
+            this.paraHareketiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paraHareketiToolStripMenuItem.Text = "Para hareketi...";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // sQLInjectionTestToolStripMenuItem
+            // 
+            this.sQLInjectionTestToolStripMenuItem.Name = "sQLInjectionTestToolStripMenuItem";
+            this.sQLInjectionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sQLInjectionTestToolStripMenuItem.Text = "SQL Injection test...";
+            // 
+            // raporlarToolStripMenuItem
+            // 
+            this.raporlarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stokListesiToolStripMenuItem,
+            this.müşteriListesiToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.stokHareketRaporuToolStripMenuItem,
+            this.carihHesapEkstresiToolStripMenuItem});
+            this.raporlarToolStripMenuItem.Name = "raporlarToolStripMenuItem";
+            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.raporlarToolStripMenuItem.Text = "Raporlar";
+            // 
+            // stokListesiToolStripMenuItem
+            // 
+            this.stokListesiToolStripMenuItem.Name = "stokListesiToolStripMenuItem";
+            this.stokListesiToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.stokListesiToolStripMenuItem.Text = "Stok listesi...";
+            this.stokListesiToolStripMenuItem.Click += new System.EventHandler(this.stokListesiToolStripMenuItem_Click);
+            // 
+            // müşteriListesiToolStripMenuItem
+            // 
+            this.müşteriListesiToolStripMenuItem.Name = "müşteriListesiToolStripMenuItem";
+            this.müşteriListesiToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.müşteriListesiToolStripMenuItem.Text = "Müşteri listesi...";
+            this.müşteriListesiToolStripMenuItem.Click += new System.EventHandler(this.müşteriListesiToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(184, 6);
+            // 
+            // stokHareketRaporuToolStripMenuItem
+            // 
+            this.stokHareketRaporuToolStripMenuItem.Name = "stokHareketRaporuToolStripMenuItem";
+            this.stokHareketRaporuToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.stokHareketRaporuToolStripMenuItem.Text = "Stok hareket raporu...";
+            // 
+            // carihHesapEkstresiToolStripMenuItem
+            // 
+            this.carihHesapEkstresiToolStripMenuItem.Name = "carihHesapEkstresiToolStripMenuItem";
+            this.carihHesapEkstresiToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.carihHesapEkstresiToolStripMenuItem.Text = "Carih hesap ekstresi...";
             // 
             // AnaForm
             // 
@@ -127,7 +202,16 @@ namespace VTSOdevStokCari
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem çıkışToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hareketlerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem malGirişçıkışToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem malHareketiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paraHareketiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem sQLInjectionTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem raporlarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stokListesiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem müşteriListesiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem stokHareketRaporuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem carihHesapEkstresiToolStripMenuItem;
     }
 }
 
