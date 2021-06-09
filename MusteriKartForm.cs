@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace VTSOdevStokCari
 {
-    public partial class FirmaListe : Form
+    public partial class MusteriKartForm : Form
     {
-        public FirmaListe()
+
+        public MusteriKartForm()
         {
             InitializeComponent();
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

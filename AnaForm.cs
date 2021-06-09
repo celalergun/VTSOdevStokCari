@@ -22,10 +22,10 @@ namespace VTSOdevStokCari
             // 1. Veri tabanı dosyası yoksa yaratılır
             // 2. İçerideki tablo, indeks, trigger ve fonksiyonlar kontrol edilir, yoksa yaratılır
 
-            VeritabaniKontrol();
+            VeritabaninaBaglan();
         }
 
-        private void VeritabaniKontrol()
+        private void VeritabaninaBaglan()
         {
             _veritabani = new Veritabani();
             _veritabani.TablolariYarat();
@@ -39,6 +39,15 @@ namespace VTSOdevStokCari
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            using (MusteriListe ml = new MusteriListe())
+            {
+                ml.VeriTabani = _veritabani;
+                ml.ShowDialog();
+            }
         }
     }
 }
