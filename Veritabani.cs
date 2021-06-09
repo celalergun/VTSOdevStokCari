@@ -53,9 +53,6 @@ namespace VTSOdevStokCari
                 );";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
-            SqlKoduCalistir(sqlKodu);
-
             sqlKodu = @"
                 CREATE TABLE IF NOT EXISTS Musteri (
                 MusteriID integer not null,
@@ -66,11 +63,8 @@ namespace VTSOdevStokCari
                 );";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_MusteriUnvani ON Musteri(MusteriUnvani);";
-            SqlKoduCalistir(sqlKodu);
-
             sqlKodu = @"
-              CREATE TABLE IF NOT EXISTS StokHareket (
+                CREATE TABLE IF NOT EXISTS StokHareket (
                 StokHareketID integer not null,
                 StokID integer not null,
                 Tarih Datetime not null,
@@ -82,7 +76,32 @@ namespace VTSOdevStokCari
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"
-              CREATE TABLE IF NOT EXISTS CariHareket (
+                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeHesapla
+                AFTER UPDATE ON StokHareket 
+                BEGIN
+                UPDATE STOK SET Miktar = Miktar - Old.Miktar;
+                UPDATE STOK SET Miktar = Miktar + New.Miktar;
+                END;";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"
+                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyedenDus
+                AFTER DELETE ON StokHareket 
+                BEGIN
+                UPDATE STOK SET Miktar = Miktar - Old.Miktar;
+                END;";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"
+                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeEkle
+                AFTER INSERT ON StokHareket 
+                BEGIN
+                UPDATE STOK SET Miktar = Miktar + New.Miktar;
+                END;";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"
+                CREATE TABLE IF NOT EXISTS CariHareket (
                 CariHareketID integer not null,
                 MusteriID integer not null,
                 Tarih Datetime not null,
@@ -91,6 +110,24 @@ namespace VTSOdevStokCari
                 PRIMARY KEY(CariHareketID),
                 FOREIGN KEY (MusteriID) REFERENCES Musteri(MusteriID) ON DELETE CASCADE
                 );";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_MusteriUnvani ON Musteri(MusteriUnvani);";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokHareketStokID ON StokHareket(StokID);";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokHareketTarih ON StokHareket(Tarih);";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_CariHareketMusteriID ON CariHareket(MusteriID);";
+            SqlKoduCalistir(sqlKodu);
+
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_CariHareketTarih ON CariHareket(Tarih);";
             SqlKoduCalistir(sqlKodu);
         }
 
