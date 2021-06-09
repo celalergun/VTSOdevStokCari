@@ -89,5 +89,14 @@ namespace VTSOdevStokCari
                 ml.ShowDialog();
             }
         }
+
+        private void paraHareketiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (CariHareketForm ch = new CariHareketForm())
+            {
+                ch.VeriTabani = _veritabani;
+                ch.ShowDialog();
+            }
+        }
     }
 }

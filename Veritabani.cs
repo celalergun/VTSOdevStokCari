@@ -76,10 +76,9 @@ namespace VTSOdevStokCari
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"
-                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeHesapla
-                AFTER UPDATE ON StokHareket 
+                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeEkle
+                AFTER INSERT ON StokHareket 
                 BEGIN
-                    UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
                     UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
                 END;";
             SqlKoduCalistir(sqlKodu);
@@ -93,9 +92,10 @@ namespace VTSOdevStokCari
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"
-                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeEkle
-                AFTER INSERT ON StokHareket 
+                CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeHesapla
+                AFTER UPDATE ON StokHareket 
                 BEGIN
+                    UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
                     UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
                 END;";
             SqlKoduCalistir(sqlKodu);
@@ -113,10 +113,9 @@ namespace VTSOdevStokCari
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"
-                CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeHesapla
-                AFTER UPDATE ON CariHareket 
+                CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeEkle
+                AFTER INSERT ON CariHareket 
                 BEGIN
-                    UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
                     UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
@@ -130,14 +129,15 @@ namespace VTSOdevStokCari
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"
-                CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeEkle
-                AFTER INSERT ON CariHareket 
+                CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeHesapla
+                AFTER UPDATE ON CariHareket 
                 BEGIN
+                    UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
                     UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
+             sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_MusteriUnvani ON Musteri(MusteriUnvani);";

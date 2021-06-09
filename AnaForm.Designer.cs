@@ -75,26 +75,26 @@ namespace VTSOdevStokCari
             // stokKartlarıToolStripMenuItem
             // 
             this.stokKartlarıToolStripMenuItem.Name = "stokKartlarıToolStripMenuItem";
-            this.stokKartlarıToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stokKartlarıToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.stokKartlarıToolStripMenuItem.Text = "Stok kartları";
             this.stokKartlarıToolStripMenuItem.Click += new System.EventHandler(this.stokKartlarıToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
             this.toolStripMenuItem1.Text = "Müşteri kartları";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
             // 
             // çıkışToolStripMenuItem
             // 
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
             this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
             // 
@@ -121,6 +121,7 @@ namespace VTSOdevStokCari
             this.paraHareketiToolStripMenuItem.Name = "paraHareketiToolStripMenuItem";
             this.paraHareketiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paraHareketiToolStripMenuItem.Text = "Para hareketi...";
+            this.paraHareketiToolStripMenuItem.Click += new System.EventHandler(this.paraHareketiToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 

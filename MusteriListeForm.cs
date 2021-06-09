@@ -37,6 +37,7 @@ namespace VTSOdevStokCari
             _liste.DataSource = _musteriler;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = _liste;
+            Liste_CurrentChanged(null, null);
         }
 
         private void Liste_CurrentChanged(object sender, EventArgs e)

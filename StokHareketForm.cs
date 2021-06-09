@@ -15,12 +15,13 @@ namespace VTSOdevStokCari
     {
         public Veritabani VeriTabani { get; internal set; }
 
+        private Stok _secilen = null;
+
         public StokHareketForm()
         {
             InitializeComponent();
         }
 
-        private Stok _secilen = null;
 
         private void button1_Click(object sender, EventArgs e)
         {
