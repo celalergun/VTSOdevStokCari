@@ -21,8 +21,23 @@ namespace VTSOdevStokCari
             InitializeComponent();
         }
 
+        internal void Yukle()
+        {
+            _musteriler = VeriTabani.Musteriler("");
+            dataGridView1.Refresh();
+            liste = new BindingSource();
+            liste.DataSource = _musteriler;
+            liste.CurrentChanged += Liste_CurrentChanged;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = liste;
+            Liste_CurrentChanged(null, null);
+        }
+
         private void Liste_CurrentChanged(object sender, EventArgs e)
         {
+            if (liste.Current == null)
+                return;
+
             txtUnvan.Text = ((Musteri)liste.Current).MusteriUnvani;
             txtAdres.Text = ((Musteri)liste.Current).Adres;
             txtBakiye.Text = ((Musteri)liste.Current).Bakiye.ToString("N2");
@@ -37,18 +52,6 @@ namespace VTSOdevStokCari
             komut.Prepare();
             komut.ExecuteNonQuery();
             Yukle();
-        }
-
-        internal void Yukle()
-        {
-            _musteriler = VeriTabani.Musteriler("");
-            dataGridView1.Refresh();
-            liste = new BindingSource();
-            liste.DataSource = _musteriler;
-            liste.CurrentChanged += Liste_CurrentChanged;
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = liste;
-            Liste_CurrentChanged(null, null);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,8 +80,8 @@ namespace VTSOdevStokCari
                 return;
 
             int id = ((Musteri)liste.Current).MusteriID;
-            string silmeKodu = "UPDATE Musteri SET MusteriUnvani = @MustesiUnvani, Adres = @Adres WHERE MusteriID = @MusteriID";
-            SqliteCommand komut = new SqliteCommand(silmeKodu, VeriTabani.Baglanti);
+            string guncellemeKodu = "UPDATE Musteri SET MusteriUnvani = @MusteriUnvani, Adres = @Adres WHERE MusteriID = @MusteriID";
+            SqliteCommand komut = new SqliteCommand(guncellemeKodu, VeriTabani.Baglanti);
             komut.Parameters.AddWithValue("@MusteriID", id);
             komut.Parameters.AddWithValue("@MusteriUnvani", txtUnvan.Text);
             komut.Parameters.AddWithValue("@Adres", txtAdres.Text);

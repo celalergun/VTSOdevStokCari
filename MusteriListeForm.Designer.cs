@@ -33,21 +33,21 @@ namespace VTSOdevStokCari
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MusteriUnvaniSutun = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Tamam";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -66,28 +66,12 @@ namespace VTSOdevStokCari
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.MusteriUnvaniSutun,
             this.Column2});
             this.dataGridView1.Location = new System.Drawing.Point(12, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(379, 616);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Stok Adı";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column2.HeaderText = "Mevcut";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
             // 
             // textBox1
             // 
@@ -98,6 +82,24 @@ namespace VTSOdevStokCari
             this.textBox1.Size = new System.Drawing.Size(141, 20);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // MusteriUnvaniSutun
+            // 
+            this.MusteriUnvaniSutun.DataPropertyName = "MusteriUnvani";
+            this.MusteriUnvaniSutun.HeaderText = "Unvanı";
+            this.MusteriUnvaniSutun.Name = "MusteriUnvaniSutun";
+            this.MusteriUnvaniSutun.ReadOnly = true;
+            this.MusteriUnvaniSutun.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Bakiye";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column2.HeaderText = "Bakiye";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // MusteriListeForm
             // 
@@ -124,8 +126,8 @@ namespace VTSOdevStokCari
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MusteriUnvaniSutun;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
