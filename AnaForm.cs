@@ -43,9 +43,10 @@ namespace VTSOdevStokCari
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            using (MusteriListe ml = new MusteriListe())
+            using (MusteriKartForm ml = new MusteriKartForm())
             {
                 ml.VeriTabani = _veritabani;
+                ml.Yukle();
                 ml.ShowDialog();
             }
         }

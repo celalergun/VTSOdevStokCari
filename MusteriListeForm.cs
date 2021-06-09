@@ -10,18 +10,13 @@ using System.Windows.Forms;
 
 namespace VTSOdevStokCari
 {
-    public partial class MusteriListe : Form
+    public partial class MusteriListeForm : Form
     {
         private List<Musteri> _musteriler = null;
         
-        public MusteriListe()
+        public MusteriListeForm()
         {
             InitializeComponent();
-            ListeyiYukle();
-            BindingSource liste = new BindingSource();
-            liste.DataSource = _musteriler;
-
-            dataGridView1.DataSource = liste;
         }
 
         public Veritabani VeriTabani { get; internal set; }
@@ -34,6 +29,15 @@ namespace VTSOdevStokCari
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             _musteriler = VeriTabani.Musteriler(textBox1.Text);
+        }
+
+        internal void Yukle()
+        {
+            ListeyiYukle();
+            BindingSource liste = new BindingSource();
+            liste.DataSource = _musteriler;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = liste;
         }
     }
 }

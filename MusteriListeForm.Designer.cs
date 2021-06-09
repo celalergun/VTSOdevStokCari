@@ -1,7 +1,7 @@
 ﻿
 namespace VTSOdevStokCari
 {
-    partial class MusteriListe
+    partial class MusteriListeForm
     {
         /// <summary>
         /// Required designer variable.
