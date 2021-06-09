@@ -65,7 +65,23 @@ namespace VTSOdevStokCari
             int id = ((Musteri)liste.Current).MusteriID;
             string silmeKodu = "DELETE FROM Musteri WHERE MusteriID = @MusteriID";
             SqliteCommand komut = new SqliteCommand(silmeKodu, VeriTabani.Baglanti);
-            komut.Parameters.AddWithValue("MusteriID", id);
+            komut.Parameters.AddWithValue("@MusteriID", id);
+            komut.Prepare();
+            komut.ExecuteNonQuery();
+            Yukle();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (liste.Current == null)
+                return;
+
+            int id = ((Musteri)liste.Current).MusteriID;
+            string silmeKodu = "UPDATE Musteri SET MusteriUnvani = @MustesiUnvani, Adres = @Adres WHERE MusteriID = @MusteriID";
+            SqliteCommand komut = new SqliteCommand(silmeKodu, VeriTabani.Baglanti);
+            komut.Parameters.AddWithValue("@MusteriID", id);
+            komut.Parameters.AddWithValue("@MusteriUnvani", txtUnvan.Text);
+            komut.Parameters.AddWithValue("@Adres", txtAdres.Text);
             komut.Prepare();
             komut.ExecuteNonQuery();
             Yukle();

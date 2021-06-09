@@ -29,7 +29,7 @@ namespace VTSOdevStokCari
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUnvan = new System.Windows.Forms.TextBox();
             this.txtAdres = new System.Windows.Forms.TextBox();
@@ -79,8 +79,10 @@ namespace VTSOdevStokCari
             // 
             // txtBakiye
             // 
+            this.txtBakiye.BackColor = System.Drawing.SystemColors.Info;
             this.txtBakiye.Location = new System.Drawing.Point(484, 119);
             this.txtBakiye.Name = "txtBakiye";
+            this.txtBakiye.ReadOnly = true;
             this.txtBakiye.Size = new System.Drawing.Size(124, 20);
             this.txtBakiye.TabIndex = 5;
             // 
@@ -112,14 +114,15 @@ namespace VTSOdevStokCari
             this.Column1.DataPropertyName = "MusteriUnvani";
             this.Column1.HeaderText = "Unvanı";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 200;
             // 
             // Column2
             // 
             this.Column2.DataPropertyName = "Bakiye";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "Bakiye";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -152,6 +155,7 @@ namespace VTSOdevStokCari
             this.button3.TabIndex = 9;
             this.button3.Text = "Kaydet";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // MusteriKartForm
             // 
