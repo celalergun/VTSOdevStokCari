@@ -79,8 +79,8 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeHesapla
                 AFTER UPDATE ON StokHareket 
                 BEGIN
-                    UPDATE STOK SET Miktar = Miktar - Old.Miktar;
-                    UPDATE STOK SET Miktar = Miktar + New.Miktar;
+                    UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
+                    UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -88,7 +88,7 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyedenDus
                 AFTER DELETE ON StokHareket 
                 BEGIN
-                    UPDATE STOK SET Miktar = Miktar - Old.Miktar;
+                    UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -96,7 +96,7 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeEkle
                 AFTER INSERT ON StokHareket 
                 BEGIN
-                    UPDATE STOK SET Miktar = Miktar + New.Miktar;
+                    UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -116,8 +116,8 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeHesapla
                 AFTER UPDATE ON CariHareket 
                 BEGIN
-                    UPDATE Musteri SET Bakiye = Bakiye - Old.Meblag;
-                    UPDATE Musteri SET Bakiye = Bakiye + New.Meblag;
+                    UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
+                    UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -125,7 +125,7 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyedenDus
                 AFTER DELETE ON CariHareket 
                 BEGIN
-                    UPDATE Musteri SET Bakiye = Bakiye - Old.Meblag;
+                    UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -133,7 +133,7 @@ namespace VTSOdevStokCari
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeEkle
                 AFTER INSERT ON CariHareket 
                 BEGIN
-                    UPDATE Musteri SET Bakiye = Bakiye + New.Meblag;
+                    UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
@@ -143,16 +143,16 @@ namespace VTSOdevStokCari
             sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_MusteriUnvani ON Musteri(MusteriUnvani);";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokHareketStokID ON StokHareket(StokID);";
+            sqlKodu = @"CREATE INDEX IF NOT EXISTS IX_StokHareketStokID ON StokHareket(StokID);";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokHareketTarih ON StokHareket(Tarih);";
+            sqlKodu = @"CREATE INDEX IF NOT EXISTS IX_StokHareketTarih ON StokHareket(Tarih);";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_CariHareketMusteriID ON CariHareket(MusteriID);";
+            sqlKodu = @"CREATE INDEX IF NOT EXISTS IX_CariHareketMusteriID ON CariHareket(MusteriID);";
             SqlKoduCalistir(sqlKodu);
 
-            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_CariHareketTarih ON CariHareket(Tarih);";
+            sqlKodu = @"CREATE INDEX IF NOT EXISTS IX_CariHareketTarih ON CariHareket(Tarih);";
             SqlKoduCalistir(sqlKodu);
         }
 
