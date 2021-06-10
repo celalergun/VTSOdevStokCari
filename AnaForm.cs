@@ -90,5 +90,14 @@ namespace VTSOdevStokCari
                 ch.ShowDialog();
             }
         }
+
+        private void sQLInjectionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SQLInjectionForm si = new SQLInjectionForm())
+            {
+                si.VeriTabani = _veritabani;
+                si.ShowDialog();
+            }
+        }
     }
 }

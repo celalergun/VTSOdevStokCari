@@ -133,6 +133,7 @@ namespace VTSOdevStokCari
             this.sQLInjectionTestToolStripMenuItem.Name = "sQLInjectionTestToolStripMenuItem";
             this.sQLInjectionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sQLInjectionTestToolStripMenuItem.Text = "SQL Injection test...";
+            this.sQLInjectionTestToolStripMenuItem.Click += new System.EventHandler(this.sQLInjectionTestToolStripMenuItem_Click);
             // 
             // raporlarToolStripMenuItem
             // 
