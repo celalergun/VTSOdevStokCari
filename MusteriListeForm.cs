@@ -35,6 +35,7 @@ namespace VTSOdevStokCari
             _musteriler = VeriTabani.Musteriler("");
             _liste = new BindingSource();
             _liste.DataSource = _musteriler;
+            _liste.CurrentChanged += Liste_CurrentChanged;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = _liste;
             Liste_CurrentChanged(null, null);
