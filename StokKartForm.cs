@@ -80,7 +80,7 @@ namespace VTSOdevStokCari
                 return;
 
             int id = ((Stok)liste.Current).StokID;
-            string guncellemeKodu = "UPDATE Stok SET StokAdi = @MustesiUnvani, Birim = @Birim WHERE StokID = @StokID";
+            string guncellemeKodu = "UPDATE Stok SET StokAdi = @StokAdi, Birim = @Birim WHERE StokID = @StokID";
             SqliteCommand komut = new SqliteCommand(guncellemeKodu, VeriTabani.Baglanti);
             komut.Parameters.AddWithValue("@StokID", id);
             komut.Parameters.AddWithValue("@StokAdi", txtStokAdi.Text);
