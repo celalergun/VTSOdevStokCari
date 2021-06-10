@@ -69,11 +69,11 @@ namespace VTSOdevStokCari
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // txtBirim
             // 
             this.txtBirim.BackColor = System.Drawing.SystemColors.Info;
             this.txtBirim.Location = new System.Drawing.Point(110, 53);
-            this.txtBirim.Name = "textBox1";
+            this.txtBirim.Name = "txtBirim";
             this.txtBirim.Size = new System.Drawing.Size(102, 20);
             this.txtBirim.TabIndex = 3;
             // 
@@ -98,6 +98,11 @@ namespace VTSOdevStokCari
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(379, 179);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 6;

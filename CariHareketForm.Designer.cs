@@ -66,6 +66,11 @@ namespace VTSOdevStokCari
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(380, 180);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 15;
@@ -93,7 +98,7 @@ namespace VTSOdevStokCari
             this.txtAdres.BackColor = System.Drawing.SystemColors.Info;
             this.txtAdres.Location = new System.Drawing.Point(111, 54);
             this.txtAdres.Name = "txtAdres";
-            this.txtAdres.Size = new System.Drawing.Size(102, 20);
+            this.txtAdres.Size = new System.Drawing.Size(308, 20);
             this.txtAdres.TabIndex = 12;
             // 
             // button1
