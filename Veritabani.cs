@@ -1,9 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VTSOdevStokCari
 {
@@ -15,6 +11,7 @@ namespace VTSOdevStokCari
         // İlk erişmeye çalıştığımızda geçerli bir bağlantı yoksa otomatik olarak yaratılacak
 
         private SqliteConnection _baglanti = null;
+
         public SqliteConnection Baglanti
         {
             get
@@ -59,7 +56,7 @@ namespace VTSOdevStokCari
                 MusteriUnvani varchar(100) not null,
                 Adres varchar(100) not null,
                 Bakiye numeric(8,2) default (0),
-                PRIMARY KEY(MusteriID) 
+                PRIMARY KEY(MusteriID)
                 );";
             SqlKoduCalistir(sqlKodu);
 
@@ -77,7 +74,7 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeEkle
-                AFTER INSERT ON StokHareket 
+                AFTER INSERT ON StokHareket
                 BEGIN
                     UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
                 END;";
@@ -85,7 +82,7 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyedenDus
-                AFTER DELETE ON StokHareket 
+                AFTER DELETE ON StokHareket
                 BEGIN
                     UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
                 END;";
@@ -93,7 +90,7 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS StokHareketBakiyeHesapla
-                AFTER UPDATE ON StokHareket 
+                AFTER UPDATE ON StokHareket
                 BEGIN
                     UPDATE STOK SET Miktar = Miktar - (Old.Miktar * Old.Tipi) WHERE StokID = Old.StokID;
                     UPDATE STOK SET Miktar = Miktar + (New.Miktar * New.Tipi) WHERE StokID = New.StokID;
@@ -114,7 +111,7 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeEkle
-                AFTER INSERT ON CariHareket 
+                AFTER INSERT ON CariHareket
                 BEGIN
                     UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
@@ -122,7 +119,7 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyedenDus
-                AFTER DELETE ON CariHareket 
+                AFTER DELETE ON CariHareket
                 BEGIN
                     UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
                 END;";
@@ -130,14 +127,14 @@ namespace VTSOdevStokCari
 
             sqlKodu = @"
                 CREATE TRIGGER IF NOT EXISTS CariHareketBakiyeHesapla
-                AFTER UPDATE ON CariHareket 
+                AFTER UPDATE ON CariHareket
                 BEGIN
                     UPDATE Musteri SET Bakiye = Bakiye - (Old.Meblag * Old.Tipi) WHERE MusteriID = Old.MusteriID;
                     UPDATE Musteri SET Bakiye = Bakiye + (New.Meblag * New.Tipi) WHERE MusteriID = New.MusteriID;
                 END;";
             SqlKoduCalistir(sqlKodu);
 
-             sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
+            sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_StokAdi ON Stok(StokAdi);";
             SqlKoduCalistir(sqlKodu);
 
             sqlKodu = @"CREATE UNIQUE INDEX IF NOT EXISTS IX_MusteriUnvani ON Musteri(MusteriUnvani);";

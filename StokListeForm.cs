@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VTSOdevStokCari
@@ -13,7 +7,7 @@ namespace VTSOdevStokCari
     public partial class StokListeForm : Form
     {
         private List<Stok> _stoklar = null;
-        BindingSource liste = null;
+        private BindingSource liste = null;
 
         public Stok Secilen { get; set; }
 
